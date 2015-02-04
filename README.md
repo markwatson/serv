@@ -6,12 +6,13 @@ This was written to avoid writing tons of one off servers in golang to host
 local directories for testing. Instead of creating a one-off golang
 script each time I need to serve something, I created this.
 
-It's also possible to do the sample thing with something like this:
+It's also possible to do a similar task like this:
 ```bash
 $ python -m SimpleHTTPServer
 ```
 
-But the golang variant seems to perform better for large files.
+But the golang variant seems to perform better for large files. It also
+allows for easily mapping URLs to directories.
 
 ## Install
 - Install golang: <https://golang.org>
