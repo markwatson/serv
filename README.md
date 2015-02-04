@@ -1,6 +1,18 @@
 # serv
 A simple static file server. Can serve up multiple static directories, as defined by a simple JSON argument.
 
+## Motivations
+This was written to avoid writing tons of one off servers in golang to host
+local directories for testing. Instead of creating a one-off golang
+script each time I need to serve something, I created this.
+
+It's also possible to do the sample thing with something like this:
+```bash
+$ python -m SimpleHTTPServer
+```
+
+But the golang variant seems to perform better for large files.
+
 ## Install
 - Install golang: <https://golang.org>
 - Setup a go environment: <https://golang.org/doc/code.html>
