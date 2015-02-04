@@ -1,6 +1,14 @@
 # serv
 A simple static file server. Can serve up multiple static directories, as defined by a simple JSON argument.
 
+## Install
+- Install golang: <https://golang.org>
+- Setup a go environment: <https://golang.org/doc/code.html>
+- Use go get to install
+```bash
+$ go get github.com/markwatson/serv
+```
+
 ## Examples
 
 ### Get help
