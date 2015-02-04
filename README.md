@@ -30,7 +30,8 @@ $ serv -listen localhost:8080
 ```bash
 serv -paths '{
 "/components/": "./web/web-app-dashboard/src/main/webapp/components",
-"/elements/": "./web/web-app-dashboard/src/main/webapp/elements",                                                                                                                    "/gen/": "./web/web-app-dashboard/src/main/webapp/gen",
+"/elements/": "./web/web-app-dashboard/src/main/webapp/elements",
+"/gen/": "./web/web-app-dashboard/src/main/webapp/gen",
 "/resources/": "./web/web-app-dashboard/src/main/webapp/resources",
 "/": "./web/web-app-dashboard/src/main/webapp/WEB-INF/templates"
 }'
