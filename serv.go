@@ -7,10 +7,6 @@ import (
 	"net/http"
 )
 
-type Handler struct {
-	Pattern, Root string
-}
-
 func registerHandlers(mux *http.ServeMux, paths map[string]string) {
 	for pattern, root := range paths {
 		log.Printf("Registering handler with pattern: %s, root path: %s",
@@ -19,7 +15,7 @@ func registerHandlers(mux *http.ServeMux, paths map[string]string) {
 	}
 }
 
-func parsePaths(paths string) (err error, pathMap map[string]string) {
+func parsePaths(paths string) (pathMap map[string]string, err error) {
 	err = json.Unmarshal([]byte(paths), &pathMap)
 	return
 }
@@ -32,7 +28,7 @@ func main() {
 			"the value as the root. Default serves current folder.")
 	flag.Parse()
 
-	err, paths := parsePaths(*pathsRaw)
+	paths, err := parsePaths(*pathsRaw)
 
 	if err != nil {
 		log.Fatal(err)
