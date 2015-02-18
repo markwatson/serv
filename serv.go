@@ -5,13 +5,28 @@ import (
 	"flag"
 	"log"
 	"net/http"
+	"os"
 )
 
 func registerHandlers(mux *http.ServeMux, paths map[string]string) {
 	for pattern, root := range paths {
-		log.Printf("Registering handler with pattern: %s, root path: %s",
-			pattern, root)
-		mux.Handle(pattern, http.StripPrefix(pattern, http.FileServer(http.Dir(root))))
+		fileInfo, err := os.Stat(root)
+
+		if err != nil {
+			log.Println("Error: path doesn't exist: " + root)
+		} else {
+			if fileInfo.IsDir() {
+				log.Printf("Registering handler with pattern: %s, root path: %s",
+					pattern, root)
+				mux.Handle(pattern, http.StripPrefix(pattern, http.FileServer(http.Dir(root))))
+			} else {
+				log.Printf("Registering handler with pattern: %s, file: %s",
+					pattern, root)
+				mux.HandleFunc(pattern, func(w http.ResponseWriter, r *http.Request) {
+					http.ServeFile(w, r, root)
+				})
+			}
+		}
 	}
 }
 
