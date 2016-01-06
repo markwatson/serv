@@ -23,6 +23,7 @@ func registerHandlers(mux *http.ServeMux, paths map[string]string) {
 				log.Printf("Registering handler with pattern: %s, file: %s",
 					pattern, root)
 				mux.HandleFunc(pattern, func(w http.ResponseWriter, r *http.Request) {
+					w.Header().Set("Access-Control-Allow-Origin", "*")
 					http.ServeFile(w, r, root)
 				})
 			}
