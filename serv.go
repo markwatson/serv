@@ -8,7 +8,15 @@ import (
 	"os"
 )
 
+func applyHeadersHandler(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		h.ServeHTTP(w, r)
+	})
+}
+
 func registerHandlers(mux *http.ServeMux, paths map[string]string) {
+	var handler http.Handler
 	for pattern, root := range paths {
 		fileInfo, err := os.Stat(root)
 
@@ -18,14 +26,15 @@ func registerHandlers(mux *http.ServeMux, paths map[string]string) {
 			if fileInfo.IsDir() {
 				log.Printf("Registering handler with pattern: %s, root path: %s",
 					pattern, root)
-				mux.Handle(pattern, http.StripPrefix(pattern, http.FileServer(http.Dir(root))))
+				handler = applyHeadersHandler(http.FileServer(http.Dir(root)))
+				mux.Handle(pattern, http.StripPrefix(pattern, handler))
 			} else {
 				log.Printf("Registering handler with pattern: %s, file: %s",
 					pattern, root)
-				mux.HandleFunc(pattern, func(w http.ResponseWriter, r *http.Request) {
-					w.Header().Set("Access-Control-Allow-Origin", "*")
+				handler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 					http.ServeFile(w, r, root)
 				})
+				mux.Handle(pattern, applyHeadersHandler(handler))
 			}
 		}
 	}
