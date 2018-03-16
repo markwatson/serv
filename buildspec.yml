@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Compiling the Go code...
+      - make all 
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - aws s3 cp --recursive --acl public-read ./build/ s3://us.markwatson.serv/
+artifacts:
+  files:
+    - build/linux-serv
+    - build/osx-serv
+    - build/windows-serv.exe
+
