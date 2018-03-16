@@ -61,6 +61,7 @@ func main() {
 
 	mux := http.NewServeMux()
 	registerHandlers(mux, paths)
+    log.Println("serv 1.0.0 started :)")
 	log.Println("Listening on: ", *listen)
 
 	log.Fatal(http.ListenAndServe(*listen, mux))
