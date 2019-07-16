@@ -37,7 +37,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: iHxgv8i9kBVWDQbrb34NLXWAto8WSIirqbTIB9YFRDnSvQMoQLiFiEmOIDYnTzWi16+SYdZiEu3+F+JAj+ogM5UtFUx3OQ1y9oZydmVxWl8UYtf+EWbj8QCX/HHFuKYbF8lm87wy/C63BD8/Nr1F+ttcL881zYUFrWBQ+RpldNQ=
+    secure: fCDtheC3N5lAXmIHYdxfrKfrrFII07z3wFPprmZTyZ90xXu6zOxLbd0oLEgWA77fmkVhPQSPnloMoJrHwhF3mYj5pHEk6qOgdsWD7OhZ874Ltef826hi2SB+X72gBd1KNEAbNWnMkmkG7byI149eX5p+oEtYPffrP9noZOorTmc=
   file:
     - serv_windows_amd64.exe
     - serv_darwin_amd64
