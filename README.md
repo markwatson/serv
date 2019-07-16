@@ -15,6 +15,10 @@ But the golang variant seems to perform better for large files. It also
 allows for easily mapping URLs to directories.
 
 ## Install
+### From Binary
+On the [GitHub releases page](https://github.com/markwatson/serv/releases), download the latest binary for your platform from the "Assets" dropdown. Rename the file to `serv` if you like, and add to a folder in your path.
+
+### From Source
 - Install golang: <https://golang.org>
 - Setup a go environment: <https://golang.org/doc/code.html>
 - Use go get to install
